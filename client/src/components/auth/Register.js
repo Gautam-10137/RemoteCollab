@@ -19,7 +19,7 @@ const Register = () => {
 
   const handlePasswordVisibility = ()=> {
     setIsPasswordVisible(!isPasswordVisible);
-  }
+  };
 
   const validateForm = ()=> {
     const newErrors = {};
@@ -36,7 +36,7 @@ const Register = () => {
     e.preventDefault();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length === 0) {
-        alert("Form Submitted Successfully!");
+        alert("Registered Successfully!");
         // here need to write a code to send the data to backend and after that
         setFormData({
           name: "",
@@ -63,7 +63,7 @@ const Register = () => {
     <>
       <form onSubmit={handleSubmit}>
         <br></br>
-        <label>name:</label>
+        <label>Name:</label>
         <input
           type="text"
           name="name"
@@ -72,7 +72,7 @@ const Register = () => {
         />
 <br></br>
 <br></br>
-        <label>email:</label>
+        <label>Email:</label>
         <input
           type="email"
           name="email"
@@ -81,7 +81,7 @@ const Register = () => {
         />
 <br></br>
 <br></br>
-        <label>password:</label>
+        <label>Password:</label>
         <input
           type={isPasswordVisible ? "text" : "password"}
           name="password"
@@ -90,7 +90,7 @@ const Register = () => {
         />
 <br></br>
 <br></br>
-        <label> confirmPassword:</label>
+        <label> ConfirmPassword:</label>
         <input
           type={isPasswordVisible ? "text" : "password"}
           name="confirmPassword"
