@@ -1,80 +1,114 @@
-import { useState } from "react";
-import React from "react";
+import React, { useState } from "react";
+import ForgotPassword from "./ForgotPassword";
 
-
-const Login=()=>{
-
-
-
-  const[formData,setFormData]=useState({
-  name:"",
-  email:"",
-  password:"",
+const Login = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
   });
 
-  const handleInput=(e)=>{
-    const name=e.target.name;
-    const value=e.target.value;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
-  }
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
 
-  const handleSubmit=async(e)=>{
-    e.preventDefault();
-    if(formData.name && formData.email && formData.password){
-      alert("form submitted successfully!")
-    setFormData({
-      name:"",
-      email:"",
-      password:""
-    });
-  }
-    else {
-      alert("please fill the values!");
+  const handleInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handlePasswordVisibility = ()=> {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+  const validateForm = ()=> {
+    const newErrors = {};
+    if(!formData.name)newErrors.name = "userName is required";
+    if(!formData.email){
+      newErrors.email = "Email is required";
+    } else if(!/\S+@\S+\.\S+/.test(formData.email)){
+        newErrors.email = "Email is invalid"
     }
-    
+    if(!formData.password)newErrors.password = "password is required";
+
+    return newErrors;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length === 0) {
+      alert("Form Submitted Successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+      });
+      setIsPasswordVisible(false);
+    } else {
+      alert(JSON.stringify(formErrors));
+    }
 
     // const result=await fetch("http://localhost:5000/api/auth/register",{
     //   method:"POST",
     //   ContentType:'text/html'
-      
 
     // })
-
   };
-
-   return (
+  return (
     <>
-    <form>
-    <label>name:</label>
-    <input 
-    type="text"
-    value={formData.name}
-    onChange={handleInput}
-    name="name"
-    />
+    {!showForgotPassword ? (
+      <form onSubmit={handleSubmit}>
+        <br></br>
+        <label>Name:</label>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleInput}
+          
+        />
+<br></br>
+<br></br>
+        <label>Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInput}
+          
+        />
+<br></br>
+<br></br>
+        <label>Password:</label>
+        <input
+          type={isPasswordVisible ? "text" :"password"}
+          name="password"
+          value={formData.password}
+          onChange={handleInput}
+          
+        />
 
-<label>email:</label>
-    <input 
-    type="email"
-    value={formData.email}
-    onChange={handleInput}
-    name="email"
-    />
+        <label>
+          <input
+          type="checkbox"
+          checked={isPasswordVisible}
+          onChange={handlePasswordVisibility}
+          />
+          Show Password
+        </label>
+<br></br>
+<br></br>
+        <button type="submit">Login</button>
+<br></br>
+        <button type="submit" onClick={()=> setShowForgotPassword(true)}>Forgot Password?</button>
+      </form>
+    ) : (
+      <ForgotPassword/>
+    )}
 
-<label>password:</label>
-    <input 
-    type="password"
-    value={formData.password}
-    onChange={handleInput}
-    name="password"
-    />
-
-
-    <button onClick={handleSubmit}>login</button>
-
-    </form>
     </>
-   )
-}
+  );
+};
 
 export default Login;
