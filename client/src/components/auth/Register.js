@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
 
+
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -37,7 +38,7 @@ const Register = () => {
     const formErrors = validateForm();
     if (Object.keys(formErrors).length === 0) {
         alert("Registered Successfully!");
-        // here need to write a code to send the data to backend and after that
+        // here need to write a code to send the data to backend and after that(by redux)
         setFormData({
           name: "",
           email: "",
@@ -52,16 +53,18 @@ const Register = () => {
       // converte the object into string
       alert(JSON.stringify(formErrors));
     }
-
-    // const result=await fetch("http://localhost:5000/api/auth/register",{
-    //   method:"POST",
-    //   ContentType:'text/html'
-    // })
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <>       
+    <div>
+      <div>
+      {/* <img src={require("../../asset/logo.png")} alt="logoimage"/> */}
+      <h1>Welcome Onboard</h1>
+      <p>Sign up and unlock new experiences!</p>
+      </div>
+      <div>
+      <form onSubmit={handleSubmit} >
         <br></br>
         <label>Name:</label>
         <input
@@ -101,7 +104,7 @@ const Register = () => {
         <label>
           <input 
            type="checkbox"
-           checked={isPasswordVisible}
+          //  checked={isPasswordVisible}
             onChange={handlePasswordVisibility}
           />        
           Show Password
@@ -116,6 +119,9 @@ const Register = () => {
 <br></br>
         <button type="submit">Register</button>
       </form>
+      </div>
+      </div>
+    
     </>
   );
 };
