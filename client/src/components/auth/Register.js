@@ -56,18 +56,34 @@ const Register = () => {
   };
 
   return (
-    <>       
-    <div>
-      <div>
-      {/* <img src={require("../../asset/logo.png")} alt="logoimage"/> */}
-      <h1>Welcome Onboard</h1>
-      <p>Sign up and unlock new experiences!</p>
+    <>
+    <div className="flex mt-[5px] ml-[450px] border-2 border-gray-400 w-[666px] h-[629px]">
+      <div className="bg-gradient-to-r from-pink-400 to-yellow-200 w-[333px] h-[629px]">
+        <div className=" mt-7  bg-transparent">
+      <img src={require("../../asset/logo.png")} alt="logoimage"/>
       </div>
-      <div>
-      <form onSubmit={handleSubmit} >
+       <h1 className="font-bold text-4xl text-center mt-[100px] text-white">Welcome Onboard</h1>
+       <div className="ml-[120px] mt-[20px]">
+       <img src={require("../../asset/person.png")} alt="personimage"/>
+       </div>
+       <p className="mt-[25px] text-left ml-[100px] mr-4 text-white text-xl">Sign up and unlock new
         <br></br>
-        <label>Name:</label>
-        <input
+       experience!</p>
+       <div className="flex space-x-9 mt-[70px]">
+        <p className="text-white ml-6">Follow:</p>
+        <img className="w-6 h-6" src={require("../../asset/linkedin.png")} alt="linkedinimage"/>
+        <img className="w-6 h-6" src={require("../../asset/instagram.png")} alt="instagramimage"/>
+        <img className="w-6 h-6" src={require("../../asset/facebook.png")} alt="facebookimage"/>
+       </div>
+      </div>
+      <div className="bg-gradient-to-r from-slate-100 to-slate-300 w-[333px] h-[629px]">
+        <h1 className="font-bold text-3xl mt-9 text-center">Register</h1>
+        <div className="text-left ml-9 mt-9">
+      <form onSubmit={handleSubmit}>
+        <br></br>
+        <label className="text-[14px]">Name:</label>
+        <br></br>
+        <input className="rounded-md w-[250px] border border-gray-400 mt-2"
           type="text"
           name="name"
           value={formData.name}
@@ -75,8 +91,9 @@ const Register = () => {
         />
 <br></br>
 <br></br>
-        <label>Email:</label>
-        <input
+        <label className="text-[14px]">Email:</label>
+        <br></br>
+        <input className="rounded-md w-[250px] border border-gray-400 mt-2"
           type="email"
           name="email"
           value={formData.email}
@@ -84,8 +101,9 @@ const Register = () => {
         />
 <br></br>
 <br></br>
-        <label>Password:</label>
-        <input
+        <label className="text-[14px]">Password:</label>
+        <br></br>
+        <input className="rounded-md w-[250px] border border-gray-400 mt-2"
           type={isPasswordVisible ? "text" : "password"}
           name="password"
           value={formData.password}
@@ -93,15 +111,16 @@ const Register = () => {
         />
 <br></br>
 <br></br>
-        <label> ConfirmPassword:</label>
-        <input
+        <label className="text-[14px]"> Confirm Password:</label>
+        <br></br>
+        <input className="rounded-md w-[250px] border border-gray-400 mt-2"
           type={isPasswordVisible ? "text" : "password"}
           name="confirmPassword"
           value={formData.confirmPassword}
           onChange={handleInput}
         />
-
-        <label>
+       
+        <label className="text-sm mt-">
           <input 
            type="checkbox"
           //  checked={isPasswordVisible}
@@ -111,17 +130,17 @@ const Register = () => {
         </label>
 <br></br>
 <br></br>
-        <label>
+        <label className="text-[12px] ">
           <input
           type="checkbox" required />
-          I agree to the terms and conditions
+          &nbsp;I agree to the terms and conditions.
         </label>
 <br></br>
-        <button type="submit">Register</button>
+        <button className="text-center ml-16 mt-16 bg-black text-white w-[124px] h-[31px] text-sm rounded-2xl" type="submit">Register</button>
       </form>
       </div>
       </div>
-    
+      </div>
     </>
   );
 };

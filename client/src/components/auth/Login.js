@@ -57,11 +57,34 @@ const Login = () => {
   };
   return (
     <>
+    <div className="flex mt-[5px] ml-[450px] border-2 border-gray-400 w-[666px] h-[629px]">
+    <div className="bg-gradient-to-r from-pink-400 to-yellow-200 w-[333px] h-[629px]">
+        <div className=" mt-7  bg-transparent">
+      <img src={require("../../asset/logo.png")} alt="logoimage"/>
+      </div>
+       <h1 className="font-bold text-4xl text-center mt-[100px] text-white">Welcome Onboard</h1>
+       <div className="ml-[120px] mt-[20px]">
+       <img src={require("../../asset/person.png")} alt="personimage"/>
+       </div>
+       <p className="mt-[25px] text-left ml-[100px] mr-4 text-white text-xl">Login and unlock new
+        <br></br>
+       experience!</p>
+       <div className="flex space-x-9 mt-[70px]">
+        <p className="text-white ml-6">Follow:</p>
+        <img className="w-6 h-6" src={require("../../asset/linkedin.png")} alt="linkedinimage"/>
+        <img className="w-6 h-6" src={require("../../asset/instagram.png")} alt="instagramimage"/>
+        <img className="w-6 h-6" src={require("../../asset/facebook.png")} alt="facebookimage"/>
+       </div>
+      </div>
+      <div className="bg-gradient-to-r from-slate-100 to-slate-300 w-[333px] h-[629px]">
+      <h1 className="font-bold text-3xl mt-9 text-center">Login</h1>
+      <div className="text-left ml-9 mt-9">
     {!showForgotPassword ? (
       <form onSubmit={handleSubmit}>
         <br></br>
-        <label>Name:</label>
-        <input
+        <label className="text-[14px]">Name:</label>
+        <br></br>
+        <input className="rounded-md w-[250px] border border-gray-400 mt-2"
           type="text"
           name="name"
           value={formData.name}
@@ -70,8 +93,9 @@ const Login = () => {
         />
 <br></br>
 <br></br>
-        <label>Email:</label>
-        <input
+        <label className="text-[14px]">Email:</label>
+        <br></br>
+        <input className="rounded-md w-[250px] border border-gray-400 mt-2"
           type="email"
           name="email"
           value={formData.email}
@@ -80,16 +104,17 @@ const Login = () => {
         />
 <br></br>
 <br></br>
-        <label>Password:</label>
-        <input
+        <label className="text-[14px]">Password:</label>
+        <input className="rounded-md w-[250px] border border-gray-400 mt-2"
           type={isPasswordVisible ? "text" :"password"}
           name="password"
           value={formData.password}
           onChange={handleInput}
-          
         />
-
-        <label>
+       <br></br>
+       <button className="text-blue-600 text-[12px] ml-40" type="submit" onClick={()=> setShowForgotPassword(true)}>Forgot Password?</button>
+       <br></br>
+        <label className="text-sm mt-">
           <input
           type="checkbox"
           checked={isPasswordVisible}
@@ -99,14 +124,16 @@ const Login = () => {
         </label>
 <br></br>
 <br></br>
-        <button type="submit">Login</button>
+        <button className="text-center ml-16 mt-10 bg-black text-white w-[124px] h-[31px] text-sm rounded-2xl"  type="submit">Login</button>
 <br></br>
-        <button type="submit" onClick={()=> setShowForgotPassword(true)}>Forgot Password?</button>
+       
       </form>
     ) : (
       <ForgotPassword/>
     )}
-
+    </div>
+    </div>
+     </div>
     </>
   );
 };

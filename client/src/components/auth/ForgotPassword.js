@@ -36,14 +36,15 @@ const ForgotPassword = ()=> {
     return(
         <>
         <form onSubmit={handleForgotPassword}>
-            <label>Email:</label>
-            <input
+            <label className="text-[14px]">Email:</label>
+            <br></br>
+            <input className="rounded-md w-[250px] border border-gray-400 mt-2 text-sm text-left bg-white"
             type="text"
             name="email"
             value={email}
             onChange={(e)=> setEmail(e.target.value)}
             />
-            <button type="submit"> Send OTP</button>
+            <button className="text-white bg-slate-800 text-[12px] rounded-xl ml-24 mt-11 w-[90px] h-[24px]" type="submit"> Send OTP</button>
         </form>
         {otpsent && (
             <form onSubmit={handleResetPassword}>
@@ -55,7 +56,7 @@ const ForgotPassword = ()=> {
                 onChange={(e) => setOtp(e.target.value)}
                 />
 
-                <label>NewPassword:</label>
+                <label className="text-[14px]">NewPassword:</label>
                 <input
                 type="password"
                 value={newPassword}
