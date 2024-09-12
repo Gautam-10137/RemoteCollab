@@ -18,27 +18,27 @@ const authSlice=createSlice({
   initialState,
   reducers:{
     userLoaded:(state,action)=>{
-      state.isAuthenticated=true,
-      state.loading=false,
-      state.user=action.payload.user
+      state.isAuthenticated=true;
+      state.loading=false;
+      state.user=action.payload.user;
     },
-    registerSucess:(state,action)=>{
-      state.loading=false,
-      state.user=action.payload.user
+    registerSuccess:(state,action)=>{
+      state.loading=false;
+      state.user=action.payload.user;
     },
     loginSuccess:(state,action)=>{
-      state.isAuthenticated=true,
-      state.loading=false,
-      state.user=action.payload.user,
-      state.token=action.payload.token,
-      localStorage.setItem('token',action.payload.token)
+      state.isAuthenticated=true;
+      state.loading=false;
+      state.user=action.payload.user;
+      state.token=action.payload.token;
+      localStorage.setItem('token',action.payload.token);
     },
     authError:(state,action)=>{
-      state.isAuthenticated=false,
-      state.loading=false,
-      state.user=null,
-      state.token=null,
-      localStorage.removeItem('token'),
+      state.isAuthenticated=false;
+      state.loading=false;
+      state.user=null;
+      state.token=null;
+      localStorage.removeItem('token');
       setAuthToken(null);
     },
   },
@@ -47,7 +47,7 @@ const authSlice=createSlice({
 
 export const{
   userLoaded,
-  registerSucess,
+ registerSuccess,
   loginSuccess,
   authError
 }=authSlice.actions;      // these are the actions which we will use in our components
@@ -71,10 +71,11 @@ export const loadUser=()=>async(dispatch)=>{
 
 export const register=({username,email,password})=>async(dispatch)=>{
   const body=JSON.stringify({username,email,password});
+
   try{
   const res=await axiosApi.post("auth/register", body);
   // console.log(res.data);
-  dispatch(registerSucess(res.data));
+  dispatch(registerSuccess(res.data));
   }
   catch(err){
     dispatch(authError());

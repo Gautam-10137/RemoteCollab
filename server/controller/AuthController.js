@@ -19,6 +19,7 @@ const register=async (req,res)=>{
         })
       
         res.status(201).json({user :newUser});
+        // res.status(201).json({"message" :"registered successfully"});
          
     }catch(err){
         console.log(err.message);

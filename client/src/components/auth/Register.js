@@ -41,6 +41,7 @@ const Register = () => {
     e.preventDefault();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length === 0) {
+      // console.log(formData);
       // here need to write a code to send the data to backend and after that
       dispatch(register(formData));
       setFormData({
