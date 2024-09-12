@@ -3,7 +3,6 @@ import ForgotPassword from "./ForgotPassword";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -23,8 +22,8 @@ const Login = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name) newErrors.name = "userName is required";
-    if (!formData.email) {
+
+    if(!formData.email){`
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid";
@@ -40,7 +39,6 @@ const Login = () => {
     if (Object.keys(formErrors).length === 0) {
       alert("Form Submitted Successfully!");
       setFormData({
-        name: "",
         email: "",
         password: "",
       });
@@ -166,6 +164,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+
     </>
   );
 };
