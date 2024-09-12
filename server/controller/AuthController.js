@@ -18,7 +18,7 @@ const register=async (req,res)=>{
              await newUser.save(); 
         })
       
-        res.status(201).json({newUser});
+        res.status(201).json({user :newUser});
          
     }catch(err){
         console.log(err.message);
@@ -29,6 +29,7 @@ const register=async (req,res)=>{
 const login= async (req,res)=>{
   try{
       const {email,password}=req.body;
+      console.log(req.body);
       const user= await User.findOne({email});
       if(!user){
         res.status(400).json({message:"Invalid Email"});

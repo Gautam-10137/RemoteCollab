@@ -6,7 +6,7 @@ const bodyParser=require('body-parser');
 const PASSWORD=process.env.PASSWORD;
 const router=require('./routes/route')
 const app=express();
-mongoose.connect("mongodb+srv://pahwagautam47:gautam123@cluster0.c7o3m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(`mongodb+srv://alish123:${PASSWORD}@cluster0.c7o3m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
 .then(()=>{
    console.log("Connected to mongodb");
 })

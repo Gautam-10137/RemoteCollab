@@ -1,15 +1,17 @@
 import { useState } from "react";
 import React from "react";
-
+import {useDispatch} from "react-redux";
+import {register} from "../../redux/auth/AuthSlice";
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
-
+   
+  const dispatch  = useDispatch();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleInput = (e) => {
@@ -24,14 +26,14 @@ const Register = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name) newErrors.name = "UserName is required";
+    if (!formData.username) newErrors.username = "UserName is required";
     if (!formData.email) newErrors.email = "Email is required";
     // this below method is a regular expression to check email
     if (!/\S+@\S+\.\S+/.test(formData.email))
       newErrors.email = "Email is invalid";
     if (!formData.password) newErrors.password = "Password is required";
     if (formData.password !== formData.confirmPassword)
-      newErrors.confirmPassword = "Password don not match";
+      newErrors.confirmPassword = "Password don't match";
     return newErrors;
   };
 
@@ -39,11 +41,10 @@ const Register = () => {
     e.preventDefault();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length === 0) {
-
-      alert("Registered Successfully!");
       // here need to write a code to send the data to backend and after that
+      dispatch(register(formData));
       setFormData({
-        name: "",
+        username: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -106,8 +107,8 @@ const Register = () => {
               <input
                 className="rounded-md w-[250px] border border-gray-400 mt-2"
                 type="text"
-                name="name"
-                value={formData.name}
+                name="username"
+                value={formData.username}
                 onChange={handleInput}
               />
               <br></br>

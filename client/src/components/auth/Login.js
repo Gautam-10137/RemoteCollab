@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import ForgotPassword from "./ForgotPassword";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/auth/AuthSlice";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +9,7 @@ const Login = () => {
     password: "",
   });
 
+  const dispatch = useDispatch();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
@@ -23,7 +26,7 @@ const Login = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    if(!formData.email){`
+    if(!formData.email){
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid";
@@ -37,7 +40,8 @@ const Login = () => {
     e.preventDefault();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length === 0) {
-      alert("Form Submitted Successfully!");
+      // console.log(formData);
+      dispatch(login(formData));
       setFormData({
         email: "",
         password: "",
@@ -47,11 +51,6 @@ const Login = () => {
       alert(JSON.stringify(formErrors));
     }
 
-    // const result=await fetch("http://localhost:5000/api/auth/register",{
-    //   method:"POST",
-    //   ContentType:'text/html'
-
-    // })
   };
   return (
     <>
