@@ -1,7 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getAuthToken} from "";
-import axiosApi from "";
-import {jwtDecode} from "";
+import {setAuthToken} from "../../utils/utils";
+import axiosApi from "../../axios/api";
+import {jwtDecode} from "jwt-decode";
+
+
 
 const initialState={
   token:localStorage.getItem('token'),
@@ -10,43 +12,52 @@ const initialState={
   user:null
 };
 
+
 const authSlice=createSlice({
   name:"auth",
   initialState,
   reducers:{
     userLoaded:(state,action)=>{
-      state.isAuthenticated=true,
-      state.loading=false,
-      state.user=action.payload.user
+      state.isAuthenticated=true;
+      state.loading=false;
+      state.user=action.payload.user;
     },
-    registerSucess:(state,action)=>{
-      state.loading=false,
-      state.user=action.payload.user
+    registerSuccess:(state,action)=>{
+      state.loading=false;
+      state.user=action.payload.user;
     },
     loginSuccess:(state,action)=>{
-      state.isAuthenticated=true,
-      state.loading=false,
-      state.user=action.payload.user,
-      state.token=action.payload.token,
-      localStorage.setItem('token',action.payload.token)
+      state.isAuthenticated=true;
+      state.loading=false;
+      state.user=action.payload.user;
+      state.token=action.payload.token;
+      localStorage.setItem('token',action.payload.token);
     },
     authError:(state,action)=>{
-      state.isAuthenticated=false,
-      state.loading=false,
-      state.user=null,
-      state.token=null,
-      localStorage.removeItem('token'),
+      state.isAuthenticated=false;
+      state.loading=false;
+      state.user=null;
+      state.token=null;
+      localStorage.removeItem('token');
       setAuthToken(null);
     },
+    logOut:(state, action)=>{
+      state.isAuthenticated=false;
+      state.user=null;
+      state.token=null;
+      localStorage.removeItem('token');
+      setAuthToken(null);
+    }
   },
 });
 
 
 export const{
   userLoaded,
-  registerSucess,
+ registerSuccess,
   loginSuccess,
-  authError
+  authError,
+  logOut
 }=authSlice.actions;      // these are the actions which we will use in our components
 
 export default authSlice.reducer;
@@ -66,21 +77,25 @@ export const loadUser=()=>async(dispatch)=>{
   }
 };
 
-export const register=(name,email,password)=>async(dispatch)=>{
-  const body=JSON.stringify({name,email,password});
+export const register=({username,email,password})=>async(dispatch)=>{
+  const body=JSON.stringify({username,email,password});
+
   try{
-  const res=await axiosApi('',body);
-  dispatch(registerSucess(res.data));
+  const res=await axiosApi.post("auth/register", body);
+  // console.log(res.data);
+  dispatch(registerSuccess(res.data));
   }
   catch(err){
     dispatch(authError());
   }
 };
 
-export const login=(email,password)=>async(dispatch)=>{
+export const login=({email,password})=>async(dispatch)=>{
   const body=JSON.stringify({email,password});
+  // console.log(body);
   try{
-    const res=await axiosApi('',body);
+    const res=await axiosApi.post('auth/login',body);
+    // console.log(res.data);
     dispatch(loginSuccess(res.data));
     dispatch(loadUser());
   }
