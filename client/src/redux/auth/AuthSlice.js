@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {setAuthToken} from "../../utils/utils";
 import axiosApi from "../../axios/api";
 import {jwtDecode} from "jwt-decode";
-import axios from "axios";
+
 
 
 const initialState={
@@ -41,6 +41,13 @@ const authSlice=createSlice({
       localStorage.removeItem('token');
       setAuthToken(null);
     },
+    logOut:(state, action)=>{
+      state.isAuthenticated=false;
+      state.user=null;
+      state.token=null;
+      localStorage.removeItem('token');
+      setAuthToken(null);
+    }
   },
 });
 
@@ -49,7 +56,8 @@ export const{
   userLoaded,
  registerSuccess,
   loginSuccess,
-  authError
+  authError,
+  logOut
 }=authSlice.actions;      // these are the actions which we will use in our components
 
 export default authSlice.reducer;

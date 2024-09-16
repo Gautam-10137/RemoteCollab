@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ForgotPassword from "./ForgotPassword";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/AuthSlice";
+import {Link} from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ const Login = () => {
     password: "",
   });
 
+  const [showDialog, setShowDialog] = useState(false);
   const dispatch = useDispatch();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -42,6 +44,7 @@ const Login = () => {
     if (Object.keys(formErrors).length === 0) {
       // console.log(formData);
       dispatch(login(formData));
+      setShowDialog(true);
       setFormData({
         email: "",
         password: "",
@@ -57,7 +60,9 @@ const Login = () => {
       <div className="flex items-center justify-center md:mt-[40px] sm:mt-[20px]">
         <div className="bg-gradient-to-r from-pink-400 to-yellow-200 w-[333px] h-[629px]">
           <div className=" md:mt-7 sm:mt-4 lg:7 bg-transparent">
+            <Link to="/">
             <img src={require("../../asset/logo.png")} alt="logoimage" />
+            </Link>
           </div>
           <h1 className="font-bold text-4xl  text-center mt-[60px]  text-white">
             Welcome Onboard
@@ -162,6 +167,23 @@ const Login = () => {
             )}
           </div>
         </div>
+        {showDialog && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white border-2 text-center border-gray-700 rounded-md p-10 m-4">
+            <h2 className="text-xl font-bold mb-4">Login Successfully</h2>
+            <p className="mb-4">
+              Now Proceed to Home Page
+            </p>
+            <Link to="/">
+              <button className="bg-blue-600 text-white w-28 h-10 rounded hover:bg-blue-700">
+                Go to Home
+              </button>
+            </Link>
+          </div>
+          </div>
+      
+        )        
+        }
       </div>
 
     </>

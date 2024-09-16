@@ -1,7 +1,8 @@
 import { useState } from "react";
 import React from "react";
-import {useDispatch} from "react-redux";
-import {register} from "../../redux/auth/AuthSlice";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/AuthSlice";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,9 +11,10 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
-   
-  const dispatch  = useDispatch();
+
+  const dispatch = useDispatch();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
 
   const handleInput = (e) => {
     const name = e.target.name;
@@ -44,12 +46,12 @@ const Register = () => {
       // console.log(formData);
       // here need to write a code to send the data to backend and after that
       dispatch(register(formData));
+      setShowDialog(true);
       setFormData({
         username: "",
         email: "",
         password: "",
         confirmPassword: "",
-
       });
       setIsPasswordVisible(false);
       // reset function is used only when onSubmit is applied on form, only to remove clicked checkbox value
@@ -62,11 +64,12 @@ const Register = () => {
 
   return (
     <>
-
       <div className="flex items-center justify-center md:mt-[40px] sm:mt-[20px]">
         <div className="bg-gradient-to-r from-pink-400 to-yellow-200 w-[333px] h-[629px]">
           <div className=" md:mt-7 sm:mt-4 lg:7 bg-transparent">
-            <img src={require("../../asset/logo.png")} alt="logoimage" />
+            <Link to="/">
+              <img src={require("../../asset/logo.png")} alt="logoimage" />
+            </Link>
           </div>
           <h1 className="font-bold text-4xl  text-center mt-[60px]  text-white">
             Welcome Onboard
@@ -187,7 +190,7 @@ const Register = () => {
                   )}
                 </button>
               </div>
-            <br></br>
+              <br></br>
               <label className="text-[12px] ">
                 <input type="checkbox" required />
                 &nbsp;I agree to the terms and conditions.
@@ -203,8 +206,25 @@ const Register = () => {
           </div>
         </div>
 
-      </div>
+        {showDialog ? (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white border-2 text-center border-gray-700 rounded-md p-10 m-4">
+            <h2 className="text-xl font-bold mb-4">Registered Successfully</h2>
+            <p className="mb-4">
+              Now Proceed to Home Page
+            </p>
+            <Link to="/login">
+              <button className="bg-blue-600 text-white w-28 h-10 rounded hover:bg-blue-700">
+                Go to Home
+              </button>
+            </Link>
+          </div>
+          </div>
       
+        ) : (
+          <></>
+        )}
+      </div>
     </>
   );
 };
