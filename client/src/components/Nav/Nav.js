@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
+
     <>
       <nav className=" bg-slate-300 p-2">
         <div className="flex relative w-full h-1container mx-auto flex justify-between items-center">
@@ -29,6 +30,7 @@ const Nav = () => {
         </div>
       </nav>
     </>
+
   );
 };
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
 
+
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -38,6 +39,7 @@ const Register = () => {
     e.preventDefault();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length === 0) {
+
       alert("Registered Successfully!");
       // here need to write a code to send the data to backend and after that
       setFormData({
@@ -45,6 +47,7 @@ const Register = () => {
         email: "",
         password: "",
         confirmPassword: "",
+
       });
       setIsPasswordVisible(false);
       // reset function is used only when onSubmit is applied on form, only to remove clicked checkbox value
@@ -53,15 +56,11 @@ const Register = () => {
       // converte the object into string
       alert(JSON.stringify(formErrors));
     }
-
-    // const result=await fetch("http://localhost:5000/api/auth/register",{
-    //   method:"POST",
-    //   ContentType:'text/html'
-    // })
   };
 
   return (
     <>
+
       <div className="flex items-center justify-center md:mt-[40px] sm:mt-[20px]">
         <div className="bg-gradient-to-r from-pink-400 to-yellow-200 w-[333px] h-[629px]">
           <div className=" md:mt-7 sm:mt-4 lg:7 bg-transparent">
@@ -201,6 +200,7 @@ const Register = () => {
             </form>
           </div>
         </div>
+
       </div>
       
     </>
