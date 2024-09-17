@@ -16,7 +16,9 @@ const Nav = () => {
             <p className="flex">Features
             <img className="w-[16px] h-[16px] mt-[7px]" src={require("../../asset/down-arrow.png")} alt="down-arrowimage" />
             </p>
-            <p>Resources</p>
+            <p className="flex">Resources
+            <img className="w-[16px] h-[16px] mt-[7px]" src={require("../../asset/down-arrow.png")} alt="down-arrowimage" />
+            </p>
             <p>Demo</p>
           </div>
           <div className="flex space-x-4">

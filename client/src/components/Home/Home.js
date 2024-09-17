@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+
 
 const Home = () => {
   return (
     <> 
-    <div className='flex bg-green-100  rounded-2xl mt-3 lg:h-[400px] md:h-[300px] sm:h-[300px] h-[300px]'>
+    <div className='flex bg-green-100  rounded-2xl mt-3 lg:h-[400px] md:h-[400px] sm:h-[600px] h-[500px]'>
          <div>
             <div className='p-1 lg:w-[260px] md:w-[160px] sm:w-[100px] w-[100px] bg-fuchsia-100 mx-20 mt-10 rounded-xl shadow-lg text-center'>
               <p className='lg:text-[18px] md:text-[15px] sm:text-[10px] text-[10px]'>Unite Your Remote Workspace</p>
@@ -18,7 +18,7 @@ const Home = () => {
             <button className='p-1 w-[120px] h-10 rounded-xl shadow-lg border-2 border-purple-600 bg-white font-semibold '>How it Works</button>
           </div>
          </div>
-         <div className='mt-7 lg:ml-[200px] md:ml-[100px] sm:ml-[100px] ml-[100px] max-w-full'>
+         <div className='mt-[30px] mr-[100px]'>
           <img src={require("../../asset/image1.png")} alt='image of home page' className="w-full h-auto sm:max-w-[300px] md:max-w-[350px] lg:max-w-[400px]"/>
          </div>
     </div>
