@@ -7,6 +7,7 @@ import Login from './components/auth/Login';
 import { BrowserRouter,Route,Routes } from 'react-router-dom';
 import './tailwind.css'; 
 import Home from './components/Home/Home';
+import Footer from './components/Footer/Footer';
 
 
 
@@ -18,7 +19,7 @@ function App() {
       {/* <Route path="/" element={<div><Nav/><Home/></div>}></Route> */}
       <Route path="login" element={<Login />}/>
       <Route path="register" element={<Register />}/>
-      <Route path="/" element={<><Nav/><Home/></>}/>
+      <Route path="/" element={<><Nav/><Home/><Footer/></>}/>
      </Routes>
     </BrowserRouter>
   );
