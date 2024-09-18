@@ -1,9 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logOut } from "../../redux/auth/AuthSlice";
 
 const Nav = () => {
-  const {isAuthenticated} = useSelector((state)=> state.auth);
+  const {isAuthenticated, user} = useSelector((state)=> state.auth);
+  console.log('Current Auth State:', isAuthenticated, user);
+  const dispatch = useDispatch();
   return (
 
     <>
@@ -21,7 +24,13 @@ const Nav = () => {
             </p>
             <p>Demo</p>
           </div>
-          <div className="flex space-x-4">
+          {isAuthenticated ? (
+              <>
+              <div>Hi, {user.name}</div>
+              <div><button onClick={()=> dispatch(logOut())}>Logout</button></div>
+              </>
+          ) : (
+            <div className="flex space-x-4">
             <Link className="bg-blue-200 w-[70px] text-center  bg-pink-500 text-white rounded-lg border border-gray-600" to="/login">
               Login
             </Link>
@@ -29,6 +38,8 @@ const Nav = () => {
               Register
             </Link>
           </div>
+          )}
+
         </div>
       </nav>
     </>
