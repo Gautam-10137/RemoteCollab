@@ -44,6 +44,8 @@ const Login = () => {
     if (Object.keys(formErrors).length === 0) {
       // console.log(formData);
       dispatch(login(formData));
+   
+
       setShowDialog(true);
       setFormData({
         email: "",

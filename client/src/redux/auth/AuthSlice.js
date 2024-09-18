@@ -20,7 +20,7 @@ const authSlice=createSlice({
     userLoaded:(state,action)=>{
       state.isAuthenticated=true;
       state.loading=false;
-      state.user=action.payload.user;
+      state.user=action.payload;
     },
     registerSuccess:(state,action)=>{
       state.loading=false;
@@ -69,7 +69,8 @@ export const loadUser=()=>async(dispatch)=>{
   }
   try{
     const Token=localStorage.getItem('token');
-    const user=jwtDecode('token');
+    const user=jwtDecode(Token);
+    // console.log(user);
     dispatch(userLoaded(user));
   }
   catch(err){
@@ -95,7 +96,7 @@ export const login=({email,password})=>async(dispatch)=>{
   // console.log(body);
   try{
     const res=await axiosApi.post('auth/login',body);
-    // console.log(res.data);
+    console.log(res.data);
     dispatch(loginSuccess(res.data));
     dispatch(loadUser());
   }

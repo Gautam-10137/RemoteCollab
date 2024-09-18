@@ -12,6 +12,7 @@ const Register = () => {
     confirmPassword: "",
   });
 
+
   const dispatch = useDispatch();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
@@ -46,6 +47,9 @@ const Register = () => {
       // console.log(formData);
       // here need to write a code to send the data to backend and after that
       dispatch(register(formData));
+      localStorage.setItem('user', JSON.stringify(formData));
+      console.log('in login component', JSON.parse(localStorage.getItem('user')));
+
       setShowDialog(true);
       setFormData({
         username: "",
