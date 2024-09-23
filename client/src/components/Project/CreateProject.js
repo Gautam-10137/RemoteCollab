@@ -11,8 +11,10 @@ const CreateProject = () => {
   const [projectDetails, setProjectDetails] = useState({
     name: "",
     description: "",
+    category:"Technical",
     members: [],
     tasks: [],
+
   });
 
   const Navigate = useNavigate();
@@ -98,42 +100,62 @@ const CreateProject = () => {
   };
 
   return (
-    <div className="conatiner mx-auto mt-8 ">
-      <h2 className="text-3xl font-semibold mb-4 text-center ">Create Project</h2>
+    <>
+    <div className="flex items-center justify-center md:mt-[40px] sm:mt-[20px]">
+    
+    <div className=" w-[433px] h-[629px]" style={{backgroundColor: '#3f5b94'}}>
+      <h2 className="text-4xl font-bold mb-4 text-center mt-14 p-4 text-white">Create Project</h2>
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
         <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Project Name</label>
+          <label htmlFor="name" className="block text-white font-medium mb-2 ml-4 ">Project Name</label>
           <input
             type="text"
             id="name"
             name="name"
             value={projectDetails.name}
             onChange={handleInputChange}
-            className="w-full border border-gray-300 rounded-md p-2 focus:border-blue-500 focus:ring-blue-500"
+            className=" border border-gray-300 rounded-md p-2 ml-4 w-[400px]"
             required
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="description" className="block text-gray-700 font-medium mb-2">Description</label>
+          <label htmlFor="description" className="block text-white font-medium mb-2 ml-4">Description</label>
           <textarea
             id="description"
             name="description"
             value={projectDetails.description}
             onChange={handleInputChange}
-            className="w-full border border-gray-300 rounded-md p-2 focus:border-blue-500 focus:ring-blue-500"
+            className="w-full border border-gray-300 rounded-md p-2 ml-4 w-[400px]"
           />
         </div>
 
-        <div className="flex justify-between">
-          <button type="button" onClick={handleAddMember} className="bg-slate-600 text-white px-4 py-2 rounded hover:bg-black">
+        <div className="mb-4">
+        <label className="block text-white font-medium mb-2 ml-4">Category</label>
+            <select
+              value={projectDetails.category}
+              name="category"
+              onChange={handleInputChange}
+              className="ml-4 w-[400px] rounded-md"
+            >
+              <option value="Technical">Technical</option>
+              <option value="Human Resource">Human Resource</option>
+              <option value="Event Management">Event Management</option>
+              <option value="Marketing & Sales">Marketing & Sales</option>
+              <option value="Legal">Legal</option>
+            </select>
+
+        </div>
+
+        <div className="flex justify-between  ml-4 w-[400px] mt-10">
+          <button type="button" onClick={handleAddMember} className="text-black px-4 py-2 rounded hover:bg-black" style={{backgroundColor: '#FFDB58'}} >
             Add Member
           </button>
-          <button type="button" onClick={handleAddTask} className="bg-slate-600 text-white px-4 py-2 rounded hover:bg-black">
+          <button type="button" onClick={handleAddTask} className="bg-slate-600 text-black px-4 py-2 rounded hover:bg-black" style={{backgroundColor: '#FFDB58'}}>
             Add Task
           </button>
         </div>
-        <div className="flex justify-end mt-4">
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Create Project</button>
+        <div className="flex justify-end mt-10 items-center justify-center">
+          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 rounded-">Create Project</button>
         </div>
       </form>
 
@@ -157,6 +179,16 @@ const CreateProject = () => {
         />
       )}
     </div>
+
+    <div className="">
+    <img
+              className="bg-gradient-to-r from-pink-400 to-yellow-200 w-[433px] h-[629px]"
+              src={require("../../asset/createProject.png")}
+              alt="createProjectimage"
+            />
+    </div>
+    </div>
+    </>
   );
 };
 
