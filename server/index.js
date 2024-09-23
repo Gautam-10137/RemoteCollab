@@ -5,8 +5,8 @@ require('dotenv').config();
 const bodyParser=require('body-parser');
 const PASSWORD=process.env.PASSWORD;
 const DBUSERNAME=process.env.DBUSERNAME;
-const router=require('./routes/route');
-const User = require('./model/User');
+
+const router=require('./routes/route')
 const app=express();
 
 mongoose.connect(`mongodb+srv://${DBUSERNAME}:${PASSWORD}@cluster0.c7o3m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)

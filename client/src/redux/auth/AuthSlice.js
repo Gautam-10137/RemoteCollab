@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {setAuthToken} from "../../utils/utils";
 import axiosApi from "../../axios/api";
 import {jwtDecode} from "jwt-decode";
-import axios from "axios";
+
 
 
 const initialState={
@@ -20,7 +20,7 @@ const authSlice=createSlice({
     userLoaded:(state,action)=>{
       state.isAuthenticated=true;
       state.loading=false;
-      state.user=action.payload.user;
+      state.user=action.payload;
     },
     registerSuccess:(state,action)=>{
       state.loading=false;
@@ -41,6 +41,13 @@ const authSlice=createSlice({
       localStorage.removeItem('token');
       setAuthToken(null);
     },
+    logOut:(state, action)=>{
+      state.isAuthenticated=false;
+      state.user=null;
+      state.token=null;
+      localStorage.removeItem('token');
+      setAuthToken(null);
+    }
   },
 });
 
@@ -49,7 +56,8 @@ export const{
   userLoaded,
  registerSuccess,
   loginSuccess,
-  authError
+  authError,
+  logOut
 }=authSlice.actions;      // these are the actions which we will use in our components
 
 export default authSlice.reducer;
@@ -61,7 +69,8 @@ export const loadUser=()=>async(dispatch)=>{
   }
   try{
     const Token=localStorage.getItem('token');
-    const user=jwtDecode('token');
+    const user=jwtDecode(Token);
+    // console.log(user);
     dispatch(userLoaded(user));
   }
   catch(err){
@@ -87,7 +96,7 @@ export const login=({email,password})=>async(dispatch)=>{
   // console.log(body);
   try{
     const res=await axiosApi.post('auth/login',body);
-    // console.log(res.data);
+    console.log(res.data);
     dispatch(loginSuccess(res.data));
     dispatch(loadUser());
   }

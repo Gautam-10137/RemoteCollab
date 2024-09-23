@@ -1,7 +1,12 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logOut } from "../../redux/auth/AuthSlice";
 
 const Nav = () => {
+  const {isAuthenticated, user} = useSelector((state)=> state.auth);
+  console.log('Current Auth State:', isAuthenticated, user);
+  const dispatch = useDispatch();
   return (
 
     <>
@@ -14,10 +19,18 @@ const Nav = () => {
             <p className="flex">Features
             <img className="w-[16px] h-[16px] mt-[7px]" src={require("../../asset/down-arrow.png")} alt="down-arrowimage" />
             </p>
-            <p>Resources</p>
+            <p className="flex">Resources
+            <img className="w-[16px] h-[16px] mt-[7px]" src={require("../../asset/down-arrow.png")} alt="down-arrowimage" />
+            </p>
             <p>Demo</p>
           </div>
-          <div className="flex space-x-4">
+          {isAuthenticated ? (
+              <>
+              <div>Hi, {user.name}</div>
+              <div><button onClick={()=> dispatch(logOut())}>Logout</button></div>
+              </>
+          ) : (
+            <div className="flex space-x-4">
             <Link className="bg-blue-200 w-[70px] text-center  bg-pink-500 text-white rounded-lg border border-gray-600" to="/login">
               Login
             </Link>
@@ -25,6 +38,8 @@ const Nav = () => {
               Register
             </Link>
           </div>
+          )}
+
         </div>
       </nav>
     </>
