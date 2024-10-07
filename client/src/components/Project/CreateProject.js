@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axiosApi from "../../axios/api";
 import AddTaskDialog from "../DialogBox/AddTaskDialog";
 import AddMemberDialog from "../DialogBox/AddMemberDialog";
+import TaskDetailDialog from "../DialogBox/TaskDetailDialog";
 
 const CreateProject = () => {
   const { addProject } = useProjects();
@@ -35,6 +36,7 @@ const CreateProject = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+   
     try {
       addProject(projectDetails);
       Navigate("/dashboard");
@@ -177,6 +179,9 @@ const CreateProject = () => {
           setShowAddTaskDialog={setShowAddTaskDialog}
           handleAddTaskSubmit={handleAddTaskSubmit}
         />
+      )}
+      {selectedTask && (
+        <TaskDetailDialog task={selectedTask} onClose={handleCloseDialog} />
       )}
     </div>
 

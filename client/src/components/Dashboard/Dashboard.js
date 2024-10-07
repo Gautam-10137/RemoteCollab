@@ -3,10 +3,11 @@ import React from 'react'
 import Home from '../Home/Home';
 import { Link } from 'react-router-dom';
 import CreateProject from '../Project/CreateProject';
+import ProjectList from '../Project/ProjectList';
 
 const Dashboard = () => {
   return (
-    <>
+    <div>
     <div className='flex'>
     <div className="w-64 h-screen bg-gray-800 text-white flex flex-col ">
      <Link className='ml-10 mt-4' to="/">Home</Link>
@@ -24,9 +25,11 @@ const Dashboard = () => {
               alt="plusimage"
             /> */}
       </button>
+    </div>  
+    <ProjectList/>    
     </div>
+    
     </div>
-    </>
   )
 }
 

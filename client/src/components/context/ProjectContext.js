@@ -15,6 +15,7 @@ export const useProjects = () => useContext(ProjectContext);
 export const ProjectProvider = ({ children }) => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
+
   const fetchProjects = useCallback(async () => {
     setLoading(true);
     try {
@@ -30,15 +31,16 @@ export const ProjectProvider = ({ children }) => {
     }
   }, []);
 
-  useEffect(() => {
-    fetchProjects();
-  }, [fetchProjects]);
+  // useEffect(() => {
+  //   fetchProjects();
+  // }, [fetchProjects]);
 
   const addProject = async (project) => {
+
     try {
-      const res = await axiosApi.post("project/create", project);
-      fetchProjects();
-      // setProjects([...projects,res.data]);
+      const res = await axiosApi.post("project/", project);
+      // fetchProjects();
+      
     } catch (err) {
       console.error("Error adding project:" + err.message);
     }
