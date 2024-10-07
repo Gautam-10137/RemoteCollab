@@ -91,9 +91,9 @@ const AddTaskDialog = ({
                 />
               </div>
 
-              {/* 
-          <div >
-            <label >
+              
+              <div className="mb-4">
+            <label className="block text-gray-700 font-medium mb-2">
               Assign To
             </label>
             <select
@@ -108,7 +108,7 @@ const AddTaskDialog = ({
                   ),
                 })
               }
-              
+              className="w-full border border-gray-300 rounded-md p-2 focus:border-blue-500 focus:ring-blue-500"
             >
               {project.members.map((member) => (
                 <option key={member.userId._id} value={member.userId._id}>
@@ -116,7 +116,7 @@ const AddTaskDialog = ({
                 </option>
               ))}
             </select>
-          </div> */}
+          </div>
 
               <div className="flex justify-end">
                 <button
