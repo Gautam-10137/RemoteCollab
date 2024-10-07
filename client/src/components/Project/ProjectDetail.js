@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useProjects } from '../context/ProjectContext';
+import { useProjects } from '../../context/ProjectContext';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axiosApi from '../../axios/api';

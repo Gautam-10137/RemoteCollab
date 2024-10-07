@@ -5,8 +5,8 @@ import React, {
   useContext,
   useCallback,
 } from "react";
-import axiosApi from "../../axios/api";
-import { getUser } from "../../utils/utils";
+import axiosApi from "../axios/api";
+import { getUser } from "../utils/utils";
 
 const ProjectContext = createContext();
 
@@ -39,6 +39,8 @@ export const ProjectProvider = ({ children }) => {
 
     try {
       const res = await axiosApi.post("project/", project);
+      console.log(res.data);
+      
       // fetchProjects();
       
     } catch (err) {

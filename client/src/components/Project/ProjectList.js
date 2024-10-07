@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { useProjects } from '../context/ProjectContext';
+import { useProjects } from '../../context/ProjectContext';
 import ProjectCard from './ProjectCard';
 const ProjectList = () => {
     const { projects, fetchProjects, loading } = useProjects();

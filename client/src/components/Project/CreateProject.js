@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useProjects } from "../context/ProjectContext";
+import { useProjects } from "../../context/ProjectContext";
 import { useNavigate } from "react-router-dom";
 import axiosApi from "../../axios/api";
 import AddTaskDialog from "../DialogBox/AddTaskDialog";

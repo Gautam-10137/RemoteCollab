@@ -10,7 +10,7 @@ import Home from "./components/Home/Home";
 import Footer from "./components/Footer/Footer";
 import Dashboard from "./components/Dashboard/Dashboard";
 import CreateProject from "./components/Project/CreateProject";
-import { ProjectProvider } from "./components/context/ProjectContext";
+import { ProjectProvider } from "./context/ProjectContext";
 
 function App() {
   return (
