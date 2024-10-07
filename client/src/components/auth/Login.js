@@ -73,7 +73,7 @@ const Login = () => {
             <img src={require("../../asset/person.png")} alt="personimage" />
           </div>
           <p className="mt-[25px] md:text-left lg:text-center sm:text-right text-center lg:ml-[100px] md:ml-[100px] sm:ml-[70px] ml:[70px] mr-4 text-white lg:text-xl md:text-xl sm:text-xl text-xs">
-            Sign up and unlock new
+            Login and unlock new
             <br></br>
             experience!
           </p>
